@@ -154,9 +154,10 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
     
     momentumTransport
     (
-        inviscid
-        ? autoPtr<compressibleMomentumTransportModel>(nullptr)
-        : compressible::momentumTransportModel::New
+//        inviscid
+//        ? autoPtr<compressibleMomentumTransportModel>(nullptr)
+//        : compressible::momentumTransportModel::New
+        compressible::momentumTransportModel::New
         (
             rho_,
             U_,
@@ -171,9 +172,10 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 
     thermophysicalTransport
     (
-        inviscid
-      ? autoPtr<fluidMulticomponentThermophysicalTransportModel>(nullptr)
-      : fluidMulticomponentThermophysicalTransportModel::New
+//        inviscid
+//      ? autoPtr<fluidMulticomponentThermophysicalTransportModel>(nullptr)
+//      : fluidMulticomponentThermophysicalTransportModel::New
+        fluidMulticomponentThermophysicalTransportModel::New
         (
             momentumTransport(),
             thermo_
@@ -192,6 +194,9 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
     phi(phi_),
     Y(Y_)
 {
+    
+    //inviscid = true; 
+    
     thermo.validate(type(), "e");
 
     if (momentumTransport.valid())

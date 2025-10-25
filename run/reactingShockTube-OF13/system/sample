@@ -1,0 +1,41 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+|   \\  /    A nd           | Website:  https://openfoam.org                  |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      sampleDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+type sets;
+libs ("libsampling.so");
+/* Minimal settings for OpenFOAM v13 `foamPostProcess -func sample` */
+interpolationScheme   cellPointFace;
+setFormat             raw;      // alternatives: gnuplot, csv, vtk
+
+fields
+(
+    T
+    U
+    H
+);
+
+sets
+(
+    x
+    {
+        type        lineFace;
+        axis        x;
+        start       (-4.995 0 0);
+        end         (4.995 0 0);
+        nPoints     1000;
+    }
+);
+
+// ************************************************************************* //

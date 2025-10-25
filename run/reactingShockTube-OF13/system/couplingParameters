@@ -1,0 +1,120 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      couplingParameters;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+/*---------------------------------------------------------------------------*\
+P A R A M E T E R S  AND  D E S C R I P T I O N S
+INTERNAL AND/OR EXTERNAL COUPLED OPTIONS
+========================================
+DiffusionMethod           unitySchmidt => Sc=1
+                          mixtureDiffusion
+			              multicomponentDiffusion
+DiffusionInEnergEquation  can be "off" or "on"
+repetitionFactor          every n`th iteration DETCHEM is called
+debugLevel                0=no output, 1=moderate output, 2=detailled output
+
+EXTERNAL COUPLED OPTIONS
+========================
+coupling                  can be "plug" or "channel" or "off"   
+postCFDRegion             set to "on" if there is a 3D CFD fluid region down-
+                          stream of an externally coupled channel
+minimizeYEqn              can be "yes" (solve YEqn at repetition factor),or "no"
+                          solve YEqn at every time step
+                          Note: set to "no" for internal mode
+coupledOultets            can be "on" or "off" - set to "on" for external coupling
+fluidCoupledName          for "postCFDRegion," name the FLUID region upstream of 
+                          the externally coupled channel. If no "postCFDRegion"
+                          then leave as "FLUID"
+fluid2CoupledName         for "postCFDRegion," name the FLUID region downstream of 
+                          the externally coupled channel. If no "postCFDRegion"
+                          then leave as "FLUID2"
+solidCoupledName          Name of the SOLID region transferring heat with the 
+                          externally coupled channel.    
+sleepTimeAfterCalc        Wait time in seconds, important if running externally
+                          coupled channels in parallel.  Forces DUO to wait for
+                          some set time to ensure all external channel calculations
+                          are finished before proceeding
+multiRelaxationFactors    If true, set a relaxation factor for each species transport
+                          equation, e.g., (CH4|O2|CO|CO2|H2|H2O).  If false (default)
+                          there is one relaxation parameter (Yi) for all species.
+directionOfPatches        x or y or z
+numberOfDetchemTubes      number of tubes to calculate in DETCHEM
+lengthOfDetchemTubes      lenght of the tubes in [m]
+numberOfDetchemBands      number of bands used in DETCHEM calculations
+\*---------------------------------------------------------------------------*/
+
+coupling                off;
+fluidCoupledName        FLUID;
+fluid2CoupledName       FLUID2;
+solidCoupledName        SOLID;
+diffusionMethod         rhoYEqn; //rhoYEqn; //unityLewis; //mixtureDiffusion; //unitySchmidt;
+postCFDRegion           no;
+minimizeYEqn            no;
+coupleOutlets           on;
+sleepTimeAfterCalc        0;
+multiRelaxationFactors   off;
+repetitionFactor         1;
+debugLevel               1; 
+directionOfPatches       z;  
+numberOfDetchemTubes     1;   
+lengthOfDetchemTubes  0.01;   
+numberOfDetchemBands    25;
+
+mapOutletsToDetchemTubes
+{
+// For each of these outlets inlet conditions for DETCHEM are calculated.
+   namesOfCoupledOutlets
+   (
+   FLUID_OUT_0101       
+   );  
+}
+
+// For each wall patch coupled to DETCHEM, specify the processor number on which
+// the patch is located (specified by topoSet and decomposePar dictionaries - 
+// see the script "prepDecompose."
+// If using in serial mode, set wandProcessorNo to 0.
+wandProcessorNo
+{
+   wandProcessorNo
+   (
+   1
+   );
+}
+
+mapPatchesToDetchemTubes
+{
+// For each of these patches a Detchem calculation is performed.
+   namesOfReferencePatches
+   (
+   WAND_0101       
+   );  
+
+// For each of these patches a Detchem result is applied (= the heatflux is mapped). 
+// Caution: Each reference patch is also a coupled patch.  
+   namesOfCoupledPatches
+   (
+ WAND_0101
+   );
+
+// For each of the coupled patches a mapping number has to be given.  
+// The number of the tube on which the patch is mapped is the number 
+// of the position inside the vector of the names of reference patches  
+   mapsToDetchemTubes 
+   (
+1
+   );  
+}
+
+// ************************************************************************* //

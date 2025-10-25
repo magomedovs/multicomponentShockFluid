@@ -1,0 +1,38 @@
+#image.origin: lower
+#image.interpolation: nearest
+#image.cmap: gray
+
+#axes.grid: True
+#grid.linestyle: --
+
+savefig.dpi: 500
+
+lines.markersize: 6
+lines.linewidth: 1
+axes.linewidth: 1
+
+font.size: 17
+axes.labelsize: 17
+axes.titlesize: 17
+legend.fontsize: 15
+xtick.labelsize: 15
+ytick.labelsize: 15
+
+xtick.major.size: 5
+ytick.major.size: 5
+xtick.major.width: 0.8
+ytick.major.width: 0.8
+
+xtick.minor.visible: True
+ytick.minor.visible: True
+xtick.minor.size: 2.5
+ytick.minor.size: 2.5
+xtick.minor.width: 0.6
+ytick.minor.width: 0.6
+
+xtick.direction: out
+ytick.direction: out
+
+text.usetex: True
+font.family: serif
+

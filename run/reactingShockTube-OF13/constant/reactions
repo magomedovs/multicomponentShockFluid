@@ -1,0 +1,219 @@
+
+
+reactions
+{
+    un-named-reaction-0
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H2 + O2 = 2OH";
+        A               1.7e+10;
+        beta            0;
+        Ta              24042.47739;
+    }
+    un-named-reaction-1
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H2 + OH = H + H2O";
+        A               1170000;
+        beta            1.3;
+        Ta              1824.571432;
+    }
+    un-named-reaction-2
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H + O2 = O + OH";
+        A               5.13e+13;
+        beta            -0.816;
+        Ta              8306.177779;
+    }
+    un-named-reaction-3
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H2 + O = H + OH";
+        A               18000000;
+        beta            1;
+        Ta              4441.165874;
+    }
+    un-named-reaction-4
+    {
+        type            reversibleThirdBodyArrhenius;
+        reaction        "H + O2 = HO2";
+        A               2.1e+12;
+        beta            -1;
+        Ta              0;
+        coeffs          
+9
+(
+(H2 3.3)
+(O2 0)
+(H 1)
+(O 1)
+(OH 1)
+(HO2 1)
+(H2O2 1)
+(H2O 21)
+(AR 1)
+)
+;
+    }
+    un-named-reaction-5
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H + O2 + O2 = HO2 + O2";
+        A               6.7e+13;
+        beta            -1.42;
+        Ta              0;
+    }
+    un-named-reaction-6
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "HO2 + OH = H2O + O2";
+        A               5e+10;
+        beta            0;
+        Ta              503.1912388;
+    }
+    un-named-reaction-7
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H + HO2 = 2OH";
+        A               2.5e+11;
+        beta            0;
+        Ta              956.0633538;
+    }
+    un-named-reaction-8
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "HO2 + O = O2 + OH";
+        A               4.8e+10;
+        beta            0;
+        Ta              503.1912388;
+    }
+    un-named-reaction-9
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "2OH = H2O + O";
+        A               600000;
+        beta            1.3;
+        Ta              0;
+    }
+    un-named-reaction-10
+    {
+        type            reversibleThirdBodyArrhenius;
+        reaction        "H2 = 2H";
+        A               2230000000;
+        beta            0.5;
+        Ta              46595.50872;
+        coeffs          
+9
+(
+(H2 3)
+(O2 1)
+(H 2)
+(O 1)
+(OH 1)
+(HO2 1)
+(H2O2 1)
+(H2O 6)
+(AR 1)
+)
+;
+    }
+    un-named-reaction-11
+    {
+        type            reversibleThirdBodyArrhenius;
+        reaction        "O2 = 2O";
+        A               185000000;
+        beta            0.5;
+        Ta              48084.95478;
+        coeffs          
+9
+(
+(H2 1)
+(O2 1)
+(H 1)
+(O 1)
+(OH 1)
+(HO2 1)
+(H2O2 1)
+(H2O 1)
+(AR 1)
+)
+;
+    }
+    un-named-reaction-12
+    {
+        type            reversibleThirdBodyArrhenius;
+        reaction        "H + OH = H2O";
+        A               7.5e+17;
+        beta            -2.6;
+        Ta              0;
+        coeffs          
+9
+(
+(H2 1)
+(O2 1)
+(H 1)
+(O 1)
+(OH 1)
+(HO2 1)
+(H2O2 1)
+(H2O 20)
+(AR 1)
+)
+;
+    }
+    un-named-reaction-13
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H + HO2 = H2 + O2";
+        A               2.5e+10;
+        beta            0;
+        Ta              352.2338672;
+    }
+    un-named-reaction-14
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "2HO2 = H2O2 + O2";
+        A               2000000000;
+        beta            0;
+        Ta              0;
+    }
+    un-named-reaction-15
+    {
+        type            reversibleThirdBodyArrhenius;
+        reaction        "H2O2 = 2OH";
+        A               1.3e+14;
+        beta            0;
+        Ta              22895.20137;
+        coeffs          
+9
+(
+(H2 1)
+(O2 1)
+(H 1)
+(O 1)
+(OH 1)
+(HO2 1)
+(H2O2 1)
+(H2O 1)
+(AR 1)
+)
+;
+    }
+    un-named-reaction-16
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H + H2O2 = H2 + HO2";
+        A               1600000000;
+        beta            0;
+        Ta              1912.126708;
+    }
+    un-named-reaction-17
+    {
+        type            reversibleArrheniusReaction;
+        reaction        "H2O2 + OH = H2O + HO2";
+        A               1e+10;
+        beta            0;
+        Ta              905.7442299;
+    }
+}
