@@ -7,7 +7,6 @@ runApplication chemkinToFoam \
                chemkin/chem.inp chemkin/therm.dat chemkin/transportProperties \
                constant/reactions constant/thermo
                
-cp -r 0.orig/ 0/
 runApplication blockMesh
 runApplication setFields
 runApplication decomposePar

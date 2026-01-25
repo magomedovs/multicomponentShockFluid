@@ -29,19 +29,6 @@ gradSchemes
 divSchemes
 {
     default         none;
-
-    // div(phi,Yi)   Gauss vanLeer;
-
-    // div(phi,Yi)   Gauss multivariateSelection
-    // {
-    //     air             limitedLinear01 1;
-    //     H2O             limitedLinear01 1;
-    //     h               limitedLinear 1;
-    // };
-    
-    // div(phi,epsilon) Gauss limitedLinear 1;
-    // div(phi,k) Gauss limitedLinear 1;
-    // div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
 }
 
 laplacianSchemes
@@ -56,16 +43,17 @@ interpolationSchemes
     // reconstruct(rho) vanAlbada;
     // reconstruct(U)  vanAlbadaV;
     // reconstruct(T)  vanAlbada;
+    // reconstruct(Yi)   vanAlbada;
 
-    reconstruct(rho) vanLeer;
-    reconstruct(U)   vanLeerV; //linearUpwindV grad(U); //upwind; //vanLeerV;
-    reconstruct(T)   vanLeer;
-    
-    // reconstruct(rho) linearUpwind grad(U);
-    // reconstruct(U)   linearUpwindV grad(U); //upwind; //vanLeerV;
-    // reconstruct(T)   linearUpwind grad(U);
+    // reconstruct(rho) vanLeer;
+    // reconstruct(U)   vanLeerV; //linearUpwindV grad(U); //upwind; //vanLeerV;
+    // reconstruct(T)   vanLeer;
+    // reconstruct(Yi)   vanLeer;
 
-    flux(rhoU)      linear;
+    reconstruct(rho)      Minmod;
+    reconstruct(U)        MinmodV;
+    reconstruct(T)        Minmod;
+    reconstruct(Yi)       Minmod;
 }
 
 snGradSchemes

@@ -7,34 +7,44 @@
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
+    version     2.0;
     format      ascii;
-    class       polyBoundaryMesh;
-    location    "constant/polyMesh";
-    object      boundary;
+    class       volVectorField;
+    object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-3
-(
-    wall
+dimensions      [0 1 -1 0 0 0 0];
+
+U_init          (-487.34 0 0);
+internalField   uniform $U_init;
+
+boundaryField
+{
+    leftWall
     {
-        type            patch;
-        nFaces          1;
-        startFace       2399;
+        // type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
+    
     inlet
     {
-        type            patch;
-        nFaces          1;
-        startFace       2400;
+        // type            inletOutlet;
+        // inletValue      uniform (-487.34 0 0);
+        // value           uniform (-487.34 0 0);
+
+        type            waveTransmissive;
+        gamma           1.4;
+        fieldInf        $U_init;
+        lInf            1e2;
     }
-    empty
+    
+    emptyWalls
     {
         type            empty;
-        inGroups        List<word> 1(empty);
-        nFaces          9600;
-        startFace       2401;
     }
-)
+}
+
 
 // ************************************************************************* //

@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2406                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
-|    \\/     M anipulation  |                                                 |
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -16,21 +16,26 @@ FoamFile
 
 dimensions      [0 0 0 0 0 0 0];
 
-internalField   uniform 0.01266;
+Y_H2_init       0.012772586577715456;
+internalField   uniform $Y_H2_init;
 
 boundaryField
 {
-    wall
+    leftWall
     {
         type            zeroGradient;
     }
     
     inlet
     {
-        type            zeroGradient;
+        // type            zeroGradient;
+        type            waveTransmissive;
+        gamma           1.4;
+        fieldInf        $Y_H2_init;
+        lInf            1e2;
     }
     
-    empty
+    emptyWalls
     {
         type            empty;
     }

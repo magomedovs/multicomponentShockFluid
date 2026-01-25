@@ -18,7 +18,7 @@ thermoType
 {
     type            hePsiThermo;
     mixture         multicomponentMixture; //coefficientWilkeMulticomponentMixture;
-    transport       sutherland;
+    transport       sutherland; //const;
     thermo          janaf;
     energy          sensibleInternalEnergy;
     equationOfState perfectGas;
@@ -26,7 +26,7 @@ thermoType
 }
 
 defaultSpecie AR;
-species         9(H2 O2 H O OH HO2 H2O2 H2O AR);
+// species         9(H2 O2 H O OH HO2 H2O2 H2O AR);
 #include "thermo"
 
 // ************************************************************************* //

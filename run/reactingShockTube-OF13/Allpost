@@ -4,9 +4,8 @@ cd "${0%/*}" || exit                                # Run from this directory
 #------------------------------------------------------------------------------
 
 runApplication reconstructPar
-runApplication postProcess -func sample -noZero
-cd plot
-python3 plot.py
+
+runApplication -s mySampling foamPostProcess -func sample
 
 #------------------------------------------------------------------------------
 

@@ -145,7 +145,7 @@ def main():
                  label="Ref." if i == 0 else None)
         if sim[i]["T"] is not None:
             ax1.plot(sim[i]["x"] * 1e2, sim[i]["T"], color="black", linestyle="-",
-                     label="reactingRhoCentralFoam" if i == 0 else None)
+                     label="multicomponentShockFluid" if i == 0 else None)
     ax1.set_xlim(0, 12); ax1.set_ylim(500, 3000)
     ax1.set_xlabel(r'$x$ [cm]', fontsize=25)
     ax1.set_ylabel(r'$T$ [K]', fontsize=25)
@@ -161,7 +161,7 @@ def main():
                  label="Ref." if i == 0 else None)
         if sim[i]["u"] is not None:
             ax2.plot(sim[i]["x"] * 1e2, sim[i]["u"], color="black", linestyle="-",
-                     label="reactingRhoCentralFoam" if i == 0 else None)
+                     label="multicomponentShockFluid" if i == 0 else None)
     ax2.set_xlim(0, 12); ax2.set_ylim(-600, 600)
     ax2.set_ylabel(r'$u$ [m/s]', fontsize=25)
     ax2.grid(); ax2.tick_params(axis='x', labelsize=20, labelbottom=False); ax2.tick_params(axis='y', labelsize=20)
@@ -176,7 +176,7 @@ def main():
                  label="Ref." if i == 0 else None)
         if sim[i]["H"] is not None:
             ax3.plot(sim[i]["x"] * 1e2, sim[i]["H"] * 1e2, color="black", linestyle="-",
-                     label="reactingRhoCentralFoam" if i == 0 else None)
+                     label="multicomponentShockFluid" if i == 0 else None)
     ax3.set_xlim(0, 12); ax3.set_ylim(0, 0.25)
     ax3.set_xlabel(r'$x$ [cm]', fontsize=25)
     ax3.set_ylabel(r'$Y_{H}$ [-]', fontsize=25)
