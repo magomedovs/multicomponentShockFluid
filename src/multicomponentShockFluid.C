@@ -98,7 +98,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 :
     fluidSolver(mesh),
 
-    thermoPtr_(fluidMulticomponentThermo::New(mesh)),
+    thermoPtr_(psiMulticomponentThermo::New(mesh)),
 
     thermo_(thermoPtr_()),
 
@@ -114,7 +114,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
             IOobject::READ_IF_PRESENT,
             IOobject::AUTO_WRITE
         ),
-        thermo_.rho() // thermo_.rho() thermo_.p()*thermo_.psi() thermo_.renameRho()
+        thermo_.renameRho() // thermo_.rho() thermo_.p()*thermo_.psi() thermo_.renameRho()
     ),
 
     U_

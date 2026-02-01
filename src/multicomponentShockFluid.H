@@ -57,7 +57,7 @@ See also
 #include "compressibleMomentumTransportModel.H"
 // #include "fluidThermoThermophysicalTransportModel.H"
 
-#include "fluidMulticomponentThermo.H"
+#include "psiMulticomponentThermo.H"
 #include "combustionModel.H"
 #include "fluidMulticomponentThermophysicalTransportModel.H"
 #include "multivariateScheme.H"
@@ -84,10 +84,10 @@ protected:
     // Thermophysical properties
 
         //- Pointer to the fluid thermophysical properties
-        autoPtr<fluidMulticomponentThermo> thermoPtr_;
+        autoPtr<psiMulticomponentThermo> thermoPtr_;
 
         //- Reference to the fluid thermophysical properties
-        fluidMulticomponentThermo& thermo_;
+        psiMulticomponentThermo& thermo_;
 
         //- Reference to the pressure field
         volScalarField& p_;
@@ -221,7 +221,7 @@ public:
     // Public Data
 
         //- Reference to the fluid thermophysical properties
-        const fluidMulticomponentThermo& thermo;
+        const psiMulticomponentThermo& thermo;
 
         //- Reference to the pressure field
         const volScalarField& p;
