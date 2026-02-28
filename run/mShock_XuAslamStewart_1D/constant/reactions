@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Notes:
+    cite paper
+
+\*---------------------------------------------------------------------------*/
+
+reactions
+{
+    methaneReaction
+    {
+        type     irreversibleArrhenius;
+        reaction "reactants = products";
+        A        7;
+        beta     0;
+        // Ea       8.3144626e4; // 10 [J/kg] * 8.3144626e3 [kg/kmol]
+        Ta       10; // 10 [J/kg] / (8.3144626 [J/mol K] / 8.3144626 [kg/mol])
+    }
+}
+
+// ************************************************************************* //

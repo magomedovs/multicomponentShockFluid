@@ -1,0 +1,1 @@
+Case reproducing the 1D test from the paper of Xu S., Aslam T., Stewart D.S. - High resolution numerical simulation of ideal and non-ideal compressible reacting flows with embedded internal boundaries - 1997.

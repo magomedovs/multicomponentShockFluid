@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+species
+(
+    reactants
+    products
+);
+
+products
+{
+    specie
+    {
+        molWeight       8.3144626e3; // =R [kg/kmol]
+    }
+    thermodynamics
+    {
+        Cp          3.5; // =gamma/(gamma-1)    for gamma = 1.4
+        hf          -50;
+    }
+    transport
+    {
+        mu          0.;
+        Pr          1;
+    }
+}
+
+reactants
+{
+    $products
+    
+    thermodynamics
+    {
+        hf          0;
+    }
+}
+
+// ************************************************************************* //
