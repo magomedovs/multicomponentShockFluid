@@ -1,0 +1,26 @@
+#!/bin/bash -e
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+paraFoam -builtin -touch
+
+runApplication blockMesh
+
+# runApplication surfaceConvert -scale 0.005 constant/geometry/surfacemesh_ref.stl constant/geometry/surfacemesh.stl
+runApplication surfaceConvert -scale 0.0025 constant/geometry/surfacemesh_ref.stl constant/geometry/surfacemesh.stl
+
+runApplication surfaceFeatures
+
+runApplication snappyHexMesh
+
+runApplication extrudeMesh
+
+runApplication createPatch
+
+runApplication checkMesh -latestTime
+
+# runApplication transformPoints "scale=(0.1 0.1 0.1)"
+
+# ----------------------------------------------------------------- end-of-file

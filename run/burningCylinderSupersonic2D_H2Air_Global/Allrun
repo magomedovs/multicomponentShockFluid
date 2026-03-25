@@ -1,0 +1,18 @@
+#!/bin/bash -e
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+paraFoam -builtin -touch
+
+cp -r 0.Opened 0/
+# cp -r 0.Closed 0/
+
+./Allmesh
+
+# runApplication setFields
+
+runApplication foamRun
+
+# ----------------------------------------------------------------- end-of-file

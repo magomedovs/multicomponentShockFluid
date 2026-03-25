@@ -1,0 +1,78 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 1 0 0 0];
+
+TInlet          300;
+internalField   uniform $TInlet;
+
+boundaryField
+{
+    #include "${FOAM_CASE}/0/bcParams"
+
+    inlet
+    {
+        // type            zeroGradient;
+
+        type            fixedValue;
+        value           $internalField;
+    }
+
+    outlet
+    {
+        // type            inletOutlet;         // with supersonicFreestream for U
+        // value           $internalField;
+        // inletValue      $internalField;
+
+        // type            zeroGradient;
+
+        type            waveTransmissive;
+        fieldInf        $TInlet;
+        $waveTransmissiveParams;
+
+        // type            advective;  // this gives problem when flame approaches a boundary
+        // fieldInf        300;
+        // $waveTransmissiveParams;
+    }
+
+    wallsY
+    {
+        // type            zeroGradient;
+
+        type            waveTransmissive;
+        fieldInf        $TInlet;
+        $waveTransmissiveParams;
+
+        // type            advective;  // this gives problem when flame approaches a boundary
+        // fieldInf        300;
+        // $waveTransmissiveParams;
+    }
+
+    cylinder
+    {
+        // type            zeroGradient;
+
+        type            fixedValue;
+        value           uniform 1200;
+    }
+
+    wallsZ
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //
