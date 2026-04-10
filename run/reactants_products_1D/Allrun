@@ -6,8 +6,7 @@ cd ${0%/*} || exit 1    # run from this directory
 
 runApplication blockMesh
 
-SCRIPT_DIR_NAME="$(basename $(pwd))"
-touch "$SCRIPT_DIR_NAME".foam""
+paraFoam -builtin -touch
 
 runApplication setFields
 
