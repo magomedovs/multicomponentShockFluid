@@ -44,7 +44,7 @@ SourceFiles
     multicomponentShockFluid.C
 
 See also
-    Foam::solvers::fluidSolver
+    Foam::solvers::basicFluidSolver
     Foam::solvers::incompressibleFluid
 
 \*---------------------------------------------------------------------------*/
@@ -52,13 +52,13 @@ See also
 #ifndef multicomponentShockFluid_H
 #define multicomponentShockFluid_H
 
-#include "fluidSolver.H"
+#include "basicFluidSolver.H"
 // #include "psiThermo.H"
 #include "compressibleMomentumTransportModel.H"
 // #include "fluidThermoThermophysicalTransportModel.H"
 
 #include "psiMulticomponentThermo.H"
-#include "combustionModel.H"
+#include "reactionModel.H"
 #include "fluidMulticomponentThermophysicalTransportModel.H"
 #include "multivariateScheme.H"
 
@@ -76,7 +76,7 @@ namespace solvers
 
 class multicomponentShockFluid
 :
-    public fluidSolver
+    public basicFluidSolver
 {
 
 protected:
@@ -124,7 +124,7 @@ protected:
 
     // Reactions
 
-        autoPtr<combustionModel> reaction;
+        autoPtr<reactionModel> reaction;
         multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields;
 
         

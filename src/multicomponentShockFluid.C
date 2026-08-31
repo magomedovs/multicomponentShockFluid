@@ -96,7 +96,7 @@ void Foam::solvers::multicomponentShockFluid::clearTemporaryFields()
 
 Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 :
-    fluidSolver(mesh),
+    basicFluidSolver(mesh),
 
     thermoPtr_(psiMulticomponentThermo::New(mesh)),
 
@@ -168,7 +168,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
     
     Y_(thermo_.Y()),
 
-    reaction(combustionModel::New(thermo_, momentumTransport())),
+    reaction(reactionModel::New(thermo_, momentumTransport())),
 
     thermophysicalTransport
     (
@@ -184,7 +184,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 
     fluxScheme
     (
-        mesh.schemes().dict().lookupOrDefault<word>("fluxScheme", "Kurganov")
+        mesh.schemes().lookupOrDefault<word>("fluxScheme", "Kurganov")
     ),
 
     thermo(thermo_),
