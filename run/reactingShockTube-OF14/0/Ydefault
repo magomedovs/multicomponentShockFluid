@@ -2,25 +2,44 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  14
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      decomposeParDict;
+    class       volScalarField;
+    object      Ydefault;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains  8;
+dimensions      [0 0 0 0 0 0 0];
 
-method             simple;
+Y_init          0.0;
+internalField   uniform $Y_init;
 
-simpleCoeffs
+boundaryField
 {
-    n              (8 1 1);
+    leftWall
+    {
+        type            zeroGradient;
+    }
+    
+    inlet
+    {
+        // type            zeroGradient;
+
+        type            waveTransmissive;
+        gamma           1.4;
+        fieldInf        $Y_init;
+        lInf            1e2;
+    }
+    
+    emptyWalls
+    {
+        type            empty;
+    }
 }
 
 

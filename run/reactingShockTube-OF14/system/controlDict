@@ -2,39 +2,53 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  14
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
+    version     2.0;
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      chemistryProperties;
+    object      controlDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-chemistryType
-{
-    solver            ode;
-}
+solver          multicomponentShockFluid;
 
-chemistry           on;
+startFrom       latestTime;
 
-initialChemicalTimeStep 1e-08;
+startTime       0;
 
-EulerImplicitCoeffs
-{
-    cTauChem        1;
-}
+stopAt          endTime;
 
-odeCoeffs
-{
-    solver          seulex; //Rosenbrock34;
-    absTol          1e-10;
-    relTol          1e-6; //0.01;
-}
+endTime         23e-5;
 
-#include "reactions"
+deltaT          1e-08;
+
+writeControl    adjustableRunTime;
+
+writeInterval   5e-6;
+
+cycleWrite      0;
+
+writeFormat     binary;
+
+writePrecision  12;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo           0.1;
+
+maxDeltaT       1; //2e-8;//1;
+
 
 // ************************************************************************* //

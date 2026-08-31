@@ -2,42 +2,31 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  14
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      setFieldsDict;
+    location    "constant";
+    object      physicalProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-defaultValues
+thermoType
 {
-    U (0 0 0);
-    T 378.656;
-    p 7173;
-};
+    type            hePsiThermo;
+    mixture         multicomponentMixture; //coefficientWilkeMulticomponentMixture;
+    transport       sutherland; //const;
+    thermo          janaf;
+    energy          sensibleInternalEnergy;
+    equationOfState perfectGas;
+    specie          specie;
+}
 
-zones
-{
-    rightState
-    {
-        type        box;
-        zoneType    cell;
-
-        box (0.06 -1e4 -1e4) (0.12 1e4 1e4);
-        
-        values
-        {
-            U (-487.34 0 0);
-            T 748.472;
-            p 35594;
-        };
-    }
-};
-
+defaultSpecie AR;
+// species         9(H2 O2 H O OH HO2 H2O2 H2O AR);
+#include "thermo"
 
 // ************************************************************************* //

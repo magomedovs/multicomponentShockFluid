@@ -2,18 +2,38 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  14
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      combustionProperties;
+    location    "system";
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-combustionModel  laminar;
+solvers
+{
+    "(rho).*"
+    {
+        solver          diagonal;
+    }
+
+    "(U|e|h|Yi).*"
+	{
+		solver			PBiCGStab;
+		preconditioner	DIC;
+		tolerance		1e-11;
+		relTol			0;
+	}
+}
+
+PIMPLE
+{
+    nOuterCorrectors 1;
+}
+
 
 // ************************************************************************* //

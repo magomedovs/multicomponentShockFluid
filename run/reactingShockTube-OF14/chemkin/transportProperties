@@ -2,44 +2,24 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  13
+    \\  /    A nd           | Version:  14
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      p;
+    class       dictionary;
+    object      transportProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [1 -1 -2 0 0 0 0];
-
-p_init          35594;
-internalField   uniform $p_init;
-
-boundaryField
+".*"
 {
-    leftWall
+    transport
     {
-        type            zeroGradient;
-    }
-    
-    inlet
-    {
-        // type            fixedValue;
-        // value           uniform 35594;
-
-        type            waveTransmissive;
-        gamma           1.4;
-        fieldInf        $p_init;
-        lInf            1e2;
-    }
-    
-    emptyWalls
-    {
-        type            empty;
+        As              0;
+        Ts              0;
     }
 }
 
