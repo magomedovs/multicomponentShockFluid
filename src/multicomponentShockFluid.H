@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
     \\  /    A nd           | Copyright (C) 2023-2025 OpenFOAM Foundation
-     \\/     M anipulation  |
+     \\/     M anipulation  | Copyright (C) 2025-2026 Shamil Magomedov
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,27 +25,13 @@ Class
     Foam::solvers::multicomponentShockFluid
 
 Description
-    Solver module for density-based solution of compressible flow
-
-    Based on central-upwind schemes of Kurganov and Tadmor with support for
-    mesh-motion and topology change.
-
-    Reference:
-    \verbatim
-        Greenshields, C. J., Weller, H. G., Gasparini, L.,
-        & Reese, J. M. (2010).
-        Implementation of semi‐discrete, non‐staggered central schemes
-        in a colocated, polyhedral, finite volume framework,
-        for high‐speed viscous flows.
-        International journal for numerical methods in fluids, 63(1), 1-21.
-    \endverbatim
+    Solver module for density-based solution of compressible reacting flow
 
 SourceFiles
     multicomponentShockFluid.C
 
 See also
     Foam::solvers::basicFluidSolver
-    Foam::solvers::incompressibleFluid
 
 \*---------------------------------------------------------------------------*/
 
@@ -53,14 +39,11 @@ See also
 #define multicomponentShockFluid_H
 
 #include "basicFluidSolver.H"
-// #include "psiThermo.H"
 #include "compressibleMomentumTransportModel.H"
-// #include "fluidThermoThermophysicalTransportModel.H"
 
 #include "psiMulticomponentThermo.H"
 #include "reactionModel.H"
 #include "fluidMulticomponentThermophysicalTransportModel.H"
-#include "multivariateScheme.H"
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -125,7 +108,6 @@ protected:
     // Reactions
 
         autoPtr<reactionModel> reaction;
-        multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields;
 
         
     // Thermophysical transport

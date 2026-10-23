@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
     \\  /    A nd           | Copyright (C) 2023-2025 OpenFOAM Foundation
-     \\/     M anipulation  |
+     \\/     M anipulation  | Copyright (C) 2025-2026 Shamil Magomedov
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -127,7 +127,8 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
             IOobject::MUST_READ,
             IOobject::AUTO_WRITE
         ),
-        mesh
+        mesh,
+        dimensions::velocity
     ),
 
     phi_
@@ -204,12 +205,6 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
         momentumTransport->validate();
         mesh.schemes().setFluxRequired(U.name());
     }
-
-    forAll(Y, i)
-    {
-        fields.add(Y[i]);
-    }
-    // fields.add(thermo.he());
 
     fluxPredictor();
 
