@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
     \\  /    A nd           | Copyright (C) 2023 OpenFOAM Foundation
-     \\/     M anipulation  |
+     \\/     M anipulation  | Copyright (C) 2025-2026 Shamil Magomedov
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -32,16 +32,6 @@ License
 
 void Foam::solvers::multicomponentShockFluid::thermophysicalPredictor()
 {
-    // tmp<fv::convectionScheme<scalar>> mvConvection
-    // (
-    //     fv::convectionScheme<scalar>::New
-    //     (
-    //         mesh,
-    //         fields,
-    //         phi,
-    //         mesh.schemes().div("div(phi,Yi)")
-    //     )
-    // );
 
     reaction->correct();
 
@@ -64,7 +54,6 @@ void Foam::solvers::multicomponentShockFluid::thermophysicalPredictor()
             fvScalarMatrix YiEqn
             (
                 fvm::ddt(rho, Yi)
-            //   + mvConvection->fvmDiv(phi, Yi)
               + fvc::div(phiYi)
              ==
                 reaction->R(Yi)

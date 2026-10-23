@@ -43,7 +43,7 @@ void Foam::solvers::multicomponentShockFluid::motionCorrector()
     {
         if (mesh.changing())
         {
-            if (mesh.topoChanged())
+            if (mesh.poly().topoChanged())
             {
                 // ...
             }

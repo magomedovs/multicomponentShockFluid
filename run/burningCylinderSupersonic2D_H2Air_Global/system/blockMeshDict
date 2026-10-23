@@ -49,9 +49,9 @@ lx #calc "$xmax - $xmin";
 ly #calc "$ymax - $ymin";
 // lz #calc "$zmax - $zmin";
 
-xcells #calc "round(mag(($lx)/($dx)))";
-ycells #calc "round(mag(($ly)/($dy)))";
-// zcells #calc "round(mag(($lz)/($dz)))";
+xcells #calc "int(round(mag(($lx)/($dx))))";
+ycells #calc "int(round(mag(($ly)/($dy))))";
+// zcells #calc "int(round(mag(($lz)/($dz))))";
 
 vertices        
 (

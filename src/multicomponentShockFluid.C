@@ -3,7 +3,7 @@
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
     \\  /    A nd           | Copyright (C) 2023-2025 OpenFOAM Foundation
-     \\/     M anipulation  |
+     \\/     M anipulation  | Copyright (C) 2025-2026 Shamil Magomedov
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -96,7 +96,7 @@ void Foam::solvers::multicomponentShockFluid::clearTemporaryFields()
 
 Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 :
-    fluidSolver(mesh),
+    basicFluidSolver(mesh),
 
     thermoPtr_(psiMulticomponentThermo::New(mesh)),
 
@@ -127,7 +127,8 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
             IOobject::MUST_READ,
             IOobject::AUTO_WRITE
         ),
-        mesh
+        mesh,
+        dimensions::velocity
     ),
 
     phi_
@@ -168,7 +169,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
     
     Y_(thermo_.Y()),
 
-    reaction(combustionModel::New(thermo_, momentumTransport())),
+    reaction(reactionModel::New(thermo_, momentumTransport())),
 
     thermophysicalTransport
     (
@@ -184,7 +185,7 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
 
     fluxScheme
     (
-        mesh.schemes().dict().lookupOrDefault<word>("fluxScheme", "Kurganov")
+        mesh.schemes().lookupOrDefault<word>("fluxScheme", "Kurganov")
     ),
 
     thermo(thermo_),
@@ -204,12 +205,6 @@ Foam::solvers::multicomponentShockFluid::multicomponentShockFluid(fvMesh& mesh)
         momentumTransport->validate();
         mesh.schemes().setFluxRequired(U.name());
     }
-
-    forAll(Y, i)
-    {
-        fields.add(Y[i]);
-    }
-    // fields.add(thermo.he());
 
     fluxPredictor();
 
