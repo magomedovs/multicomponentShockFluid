@@ -22,10 +22,10 @@ exposedPatchName maxZ;
 
 extrudeModel        linearNormal;
 
-nLayers             1;
-
 linearNormalCoeffs
 {
+    nLayers         1;
+    expansionRatio  1;
     thickness       0.1;
 }
 
