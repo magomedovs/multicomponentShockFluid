@@ -37,7 +37,7 @@ internalField #codeStream
             fld[i] = T_init(x);
         }
 
-        writeEntry(os, "", fld);
+        writeEntry(os, fld);
     #};
 
     codeInclude

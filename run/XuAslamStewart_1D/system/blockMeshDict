@@ -20,7 +20,7 @@ L               12;
 // xCells    200;
 
 nCellsPerUnit   20;
-xCells    #calc "round($nCellsPerUnit * $L)";
+xCells    #calc "int(round($nCellsPerUnit * $L))";
 
 vertices
 (
